@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>调查问卷</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+<div id="surveyApp">
+    <el-container>
+        <el-header>
+            <h1 style="text-align: center;">调查问卷</h1>
+        </el-header>
+        <el-main>
+            <el-form :model="surveyForm" label-width="120px">
+                <el-form-item label="姓名" prop="name">
+                    <el-input v-model="surveyForm.name" placeholder="请输入您的姓名"></el-input>
+                </el-form-item>
+                <el-form-item label="年龄" prop="age">
+                    <el-input v-model.number="surveyForm.age" placeholder="请输入您的年龄"></el-input>
+                </el-form-item>
+                <el-form-item label="性别" prop="gender">
+                    <el-radio-group v-model="surveyForm.gender">
+                        <el-radio label="male">男</el-radio>
+                        <el-radio label="female">女</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="喜欢的颜色" prop="favoriteColor">
+                    <el-checkbox-group v-model="surveyForm.favoriteColor">
+                        <el-checkbox label="red">红色</el-checkbox>
+                        <el-checkbox label="blue">蓝色</el-checkbox>
+                        <el-checkbox label="green">绿色</el-checkbox>
+                    </el-checkbox-group>
+                </el-form-item>
+                <el-form-item label="最喜欢的动物" prop="favoriteAnimal">
+                    <el-radio-group v-model="surveyForm.favoriteAnimal">
+                        <el-radio label="dog">狗</el-radio>
+                        <el-radio label="cat">猫</el-radio>
+                        <el-radio label="rabbit">兔子</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="submitSurvey">提交问卷</el-button>
+                </el-form-item>
+            </el-form>
+        </el-main>
+    </el-container>
+</div>
+
+<script>
+    new Vue({
+      el: '#surveyApp',
+      data() {
+        return {
+          surveyForm: {
+            name: '',
+            age: '',
+            gender: '',
+            favoriteColor: [],
+            favoriteAnimal: ''
+          }
+        };
+      },
+      methods: {
+        submitSurvey() {
+          // 模拟提交数据，实际应用中可以使用 Axios 或其他 HTTP 库发送请求到后端
+          console.log('提交的问卷数据:', this.surveyForm);
+          alert('问卷提交成功！');
+          // 清空表单数据
+          this.resetForm();
+        },
+        resetForm() {
+          this.surveyForm.name = '';
+          this.surveyForm.age = '';
+          this.surveyForm.gender = '';
+          this.surveyForm.favoriteColor = [];
+          this.surveyForm.favoriteAnimal = '';
+        }
+      }
+    });
+</script>
+</body>
+</html>
